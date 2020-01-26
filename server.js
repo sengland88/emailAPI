@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const nodemailer = require('nodemailer');
 const express = require("express");
+const cors = require('cors')
 const keys = require("./keys");
 
 // Sets up the Express App
@@ -18,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+app.use(cors())
+
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "public/home.html"));
@@ -26,6 +29,8 @@ app.get("/", function(req, res) {
 app.post("/email", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
+  let website = "https://shelbyengland.com/"
+ 
     console.log("working!")
     console.log(req.body);
     const name = req.body.name;
