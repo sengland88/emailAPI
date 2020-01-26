@@ -19,11 +19,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+var corsOptions = {
+  origin: 'https://shelbyengland.com/',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "public/home.html"));
   });
 
-app.post("/email", cors(), function(req, res) {
+app.post("/email", cors(corsOptions), function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware 
     console.log("working!")
