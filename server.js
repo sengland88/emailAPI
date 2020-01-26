@@ -19,14 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-app.use(cors())
-
-
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "public/home.html"));
   });
 
-app.post("/email", function(req, res) {
+app.post("/email", cors(), function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware 
     console.log("working!")
