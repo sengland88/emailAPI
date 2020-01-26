@@ -28,9 +28,7 @@ app.get("/", function(req, res) {
 
 app.post("/email", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
-    // This works because of our body parsing middleware
-  let website = "https://shelbyengland.com/"
- 
+    // This works because of our body parsing middleware 
     console.log("working!")
     console.log(req.body);
     const name = req.body.name;
@@ -65,7 +63,7 @@ app.post("/email", function(req, res) {
         }
       });
   
-    res.json(true);
+    res.json("it worked.");
   });
   
   // Starts the server to begin listening
